@@ -24,6 +24,7 @@ object ApiFactory {
             chain.proceed(newRequest)
         }.build()
 
+
     private val retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
