@@ -1,4 +1,4 @@
-package com.ptitsa_chebupitsa.weatherapp.ui.theme
+package com.ptitsa_chebupitsa.weatherapp.presentation.theme
 
 import android.app.Activity
 import android.os.Build
