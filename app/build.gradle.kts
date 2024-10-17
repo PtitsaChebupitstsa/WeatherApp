@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.sumin.weatherapp"
+    namespace = "com.ptitsa_chebupitsa"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.sumin.weatherapp"
+        applicationId = "com.ptitsa_chebupitsa"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
