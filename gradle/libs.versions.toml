@@ -16,6 +16,7 @@ dagger = "2.48.1"
 glide = "1.0.0-beta01"
 retrofit = "2.9.0"
 
+
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
