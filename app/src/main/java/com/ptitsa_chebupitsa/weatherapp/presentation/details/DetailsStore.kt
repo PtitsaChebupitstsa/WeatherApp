@@ -16,7 +16,7 @@ import com.ptitsa_chebupitsa.weatherapp.presentation.details.DetailsStore.State
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-internal interface DetailsStore : Store<Intent, State, Label> {
+ interface DetailsStore : Store<Intent, State, Label> {
 
     sealed interface Intent {
 
@@ -56,7 +56,7 @@ class DetailsStoreFactory @Inject constructor(
     private val observeFavouriteStateUseCase: ObserveFavouriteStateUseCase
 ) {
 
-    internal fun create(city: City): DetailsStore =
+     fun create(city: City): DetailsStore =
         object : DetailsStore, Store<Intent, State, Label> by storeFactory.create(
             name = "DetailsStore",
             initialState = State(
