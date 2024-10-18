@@ -4,7 +4,7 @@ import com.ptitsa_chebupitsa.weatherapp.domain.repository.FavouriteRepository
 import javax.inject.Inject
 
 
-class GetFavouritesCitiesUseCase @Inject constructor(private val repository: FavouriteRepository) {
+class GetFavouriteCitiesUseCase @Inject constructor(private val repository: FavouriteRepository) {
 
     operator fun invoke() = repository.favoriteCities
 
