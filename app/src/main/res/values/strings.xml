@@ -4,4 +4,5 @@
     <string name="search">Search</string>
     <string name="empty_result_texr">"По вашему запросу ничего не найдено "</string>
     <string name="something_went_wrong">Что-то пошло не так</string>
+    <string name="upcoming">Upcoming</string>
 </resources>

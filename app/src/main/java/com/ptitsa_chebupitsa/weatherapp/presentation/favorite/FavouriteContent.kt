@@ -49,13 +49,14 @@ import com.ptitsa_chebupitsa.weatherapp.presentation.theme.CardGradients
 import com.ptitsa_chebupitsa.weatherapp.presentation.theme.Gradient
 import com.ptitsa_chebupitsa.weatherapp.presentation.theme.Orange
 
+
 @Composable
 fun FavouriteContent(component: FavouriteComponent) {
 
     val state by component.model.collectAsState()
 
     LazyVerticalGrid(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxSize().padding(top = 24.dp),
         columns = GridCells.Fixed(2),
         contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(24.dp),
@@ -71,12 +72,15 @@ fun FavouriteContent(component: FavouriteComponent) {
             key = { _, item -> item.city.id }
         ) { index, item ->
             CityCard(
-                cityItem = item, index,
+                cityItem = item,
+                index = index,
                 onClick = { component.onCityItemClick(item.city) }
             )
         }
         item {
-            AddFavouriteCityCard(onClick = {component.onClickAddFavourite()})
+            AddFavouriteCityCard(
+                onClick = { component.onClickAddFavourite() }
+            )
         }
     }
 }
@@ -88,12 +92,9 @@ private fun CityCard(
     index: Int,
     onClick: () -> Unit
 ) {
-
     val gradient = getGradientByIndex(index)
-
     Card(
         modifier = Modifier
-            .clickable { onClick() }
             .fillMaxSize()
             .shadow(
                 elevation = 16.dp,
@@ -112,37 +113,35 @@ private fun CityCard(
                     drawCircle(
                         brush = gradient.secondaryGradient,
                         center = Offset(
-                            x = center.x - size.width / 10f,
+                            x = center.x - size.width / 10,
                             y = center.y + size.height / 2
                         ),
                         radius = size.maxDimension / 2
                     )
                 }
+                .clickable { onClick() }
                 .padding(24.dp)
         ) {
             when (val weatherState = cityItem.weatherState) {
-                FavouriteStore.State.WeatherState.Error -> {
+                FavouriteStore.State.WeatherState.Error -> {}
 
-                }
-
-                FavouriteStore.State.WeatherState.Initial -> {
-                }
+                FavouriteStore.State.WeatherState.Initial -> {}
 
                 is FavouriteStore.State.WeatherState.Loaded -> {
                     GlideImage(
                         modifier = Modifier
                             .align(Alignment.TopEnd)
-                            .size(56.dp),
+                            .size(48.dp),
                         model = weatherState.iconUrl,
                         contentDescription = null
                     )
                     Text(
                         modifier = Modifier
                             .align(Alignment.BottomStart)
-                            .padding(bottom = 24.dp),
+                            .padding(bottom = 18.dp),
                         text = weatherState.tempC.tempToFormattedString(),
                         color = MaterialTheme.colorScheme.background,
-                        style = MaterialTheme.typography.bodyLarge.copy(fontSize = 48.sp)
+                        style = MaterialTheme.typography.bodyLarge.copy(fontSize = 32.sp)
                     )
                 }
 
@@ -164,22 +163,20 @@ private fun CityCard(
 }
 
 @Composable
-fun AddFavouriteCityCard(
+private fun AddFavouriteCityCard(
     onClick: () -> Unit
 ) {
-
     Card(
         colors = CardDefaults.cardColors(containerColor = Color.Transparent),
         shape = MaterialTheme.shapes.extraLarge,
         border = BorderStroke(1.dp, MaterialTheme.colorScheme.onBackground)
     ) {
-
         Column(
             modifier = Modifier
                 .sizeIn(minHeight = 196.dp)
-                .fillMaxSize()
-                .padding(24.dp)
+                .fillMaxWidth()
                 .clickable { onClick() }
+                .padding(24.dp)
         ) {
             Icon(
                 modifier = Modifier
@@ -187,8 +184,8 @@ fun AddFavouriteCityCard(
                     .padding(16.dp)
                     .size(48.dp),
                 imageVector = Icons.Default.Edit,
-                contentDescription = null,
-                tint = Orange
+                tint = Orange,
+                contentDescription = null
             )
             Spacer(modifier = Modifier.weight(1f))
             Text(
@@ -197,17 +194,14 @@ fun AddFavouriteCityCard(
                 modifier = Modifier.align(Alignment.CenterHorizontally)
             )
         }
-
     }
-
 }
 
 @Composable
-fun SearchCard(
+private fun SearchCard(
     onClick: () -> Unit
 ) {
-    val gradient = getGradientByIndex(3)
-
+    val gradient = CardGradients.gradients[3]
     Card(
         shape = CircleShape
     ) {
@@ -227,12 +221,11 @@ fun SearchCard(
             Text(
                 text = stringResource(R.string.search),
                 color = MaterialTheme.colorScheme.background,
-                modifier = Modifier.padding(16.dp)
+                modifier = Modifier.padding(end = 16.dp)
             )
         }
     }
 }
-
 
 private fun getGradientByIndex(index: Int): Gradient {
     val gradients = CardGradients.gradients
