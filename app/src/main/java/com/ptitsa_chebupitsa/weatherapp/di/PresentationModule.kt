@@ -9,8 +9,6 @@ import dagger.Provides
 interface PresentationModule {
 
     companion object {
-
-
         @Provides
         fun provideFavouriteFactory(): StoreFactory = DefaultStoreFactory()
 

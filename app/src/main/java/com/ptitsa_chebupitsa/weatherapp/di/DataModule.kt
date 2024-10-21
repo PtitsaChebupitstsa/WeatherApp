@@ -10,6 +10,7 @@ import com.ptitsa_chebupitsa.weatherapp.data.repository.SearchRepositoryImpl
 import com.ptitsa_chebupitsa.weatherapp.data.repository.WeatherRepositoryImpl
 import com.ptitsa_chebupitsa.weatherapp.domain.repository.FavouriteRepository
 import com.ptitsa_chebupitsa.weatherapp.domain.repository.SearchRepository
+import com.ptitsa_chebupitsa.weatherapp.domain.repository.WeatherRepository
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -21,10 +22,10 @@ interface DataModule {
     fun bindFavouriteRepository(impl: FavouriteRepositoryImpl): FavouriteRepository
 
     @[ApplicationScope Binds]
-    fun bindSearchRepository(impl: SearchRepositoryImpl): SearchRepository
+    fun bindWeatherRepository(impl: WeatherRepositoryImpl): WeatherRepository
 
     @[ApplicationScope Binds]
-    fun bindWeatherRepository(impl: WeatherRepositoryImpl): WeatherRepositoryImpl
+    fun bindSearchRepository(impl: SearchRepositoryImpl): SearchRepository
 
     companion object {
 
@@ -32,11 +33,13 @@ interface DataModule {
         fun provideApiService(): ApiService = ApiFactory.apiService
 
         @[ApplicationScope Provides]
-        fun provideFavouriteDatabase(context: Context): FavouriteDatabase =
-            FavouriteDatabase.getInstance(context)
+        fun provideFavouriteDatabase(context: Context): FavouriteDatabase {
+            return FavouriteDatabase.getInstance(context)
+        }
 
         @[ApplicationScope Provides]
-        fun provideFavouriteCitiesDao(database: FavouriteDatabase):FavouriteCitiesDao = database.favouriteCitiesDao()
-
+        fun provideFavouriteCitiesDao(database: FavouriteDatabase): FavouriteCitiesDao {
+            return database.favouriteCitiesDao()
+        }
     }
 }
