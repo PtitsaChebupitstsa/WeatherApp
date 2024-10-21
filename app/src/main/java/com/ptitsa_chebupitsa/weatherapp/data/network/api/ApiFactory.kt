@@ -10,7 +10,7 @@ import java.util.Locale
 object ApiFactory {
 
     private const val BASE_URL = "https://api.weatherapi.com/v1/"
-
+    private const val API_KEY_PARAM = "your Api Key"
     private const val PARAM_LANG = "lang"
     private const val KEY_PARAM = "key"
 
@@ -20,7 +20,8 @@ object ApiFactory {
             val newUrl = originalRequest
                 .url()
                 .newBuilder()
-                .addQueryParameter("key", "")
+                .addQueryParameter(KEY_PARAM, API_KEY_PARAM)
+                .addQueryParameter(PARAM_LANG, Locale.getDefault().language)
                 .build()
             val newRequest = originalRequest.newBuilder()
                 .url(newUrl)
