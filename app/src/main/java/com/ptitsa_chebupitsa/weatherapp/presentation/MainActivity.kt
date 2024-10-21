@@ -9,6 +9,8 @@ import androidx.core.app.AppComponentFactory
 import com.arkivanov.decompose.defaultComponentContext
 import com.ptitsa_chebupitsa.weatherapp.WeatherApp
 import com.ptitsa_chebupitsa.weatherapp.data.network.api.ApiFactory
+import com.ptitsa_chebupitsa.weatherapp.domain.usecase.ChangeFavouriteStateUseCase
+import com.ptitsa_chebupitsa.weatherapp.domain.usecase.SearchCityUseCase
 import com.ptitsa_chebupitsa.weatherapp.presentation.root.DefaultRootComponent
 import com.ptitsa_chebupitsa.weatherapp.presentation.root.RootContent
 import com.ptitsa_chebupitsa.weatherapp.presentation.theme.WeatherAppTheme

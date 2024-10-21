@@ -5,6 +5,7 @@ import com.arkivanov.decompose.extensions.compose.jetpack.stack.Children
 import com.ptitsa_chebupitsa.weatherapp.presentation.details.DetailsComponent
 import com.ptitsa_chebupitsa.weatherapp.presentation.details.DetailsContent
 import com.ptitsa_chebupitsa.weatherapp.presentation.favorite.FavouriteContent
+
 import com.ptitsa_chebupitsa.weatherapp.presentation.search.SearchContent
 import com.ptitsa_chebupitsa.weatherapp.presentation.theme.WeatherAppTheme
 
